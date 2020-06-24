@@ -2,6 +2,10 @@ package leetcode;
 
 import java.util.*;
 
+/**
+ *  정수로 이루어진 array가 주어졌을 때, 두 숫자의 index의 합이 target과 같은 경우의 index array를 리턴하는 function을 구하세요.
+ */
+
 public class TwoSum {
 
     public static void main(String[] args) {
