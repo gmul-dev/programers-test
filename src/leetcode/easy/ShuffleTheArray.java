@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.easy;
 
 public class ShuffleTheArray {
     public static void main(String[] args) {

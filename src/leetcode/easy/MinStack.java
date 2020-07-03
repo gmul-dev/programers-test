@@ -1,6 +1,4 @@
-package leetcode;
-
-import java.util.*;
+package leetcode.easy;
 
 public class MinStack {
 
