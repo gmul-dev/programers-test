@@ -22,10 +22,7 @@ public class MergeIntervals {
             int[] current = intervals[0];
             while (i < intervals.length) {
                 if(current[1] >= intervals[i][0]) {
-                    current = new int[] {
-                            Math.min(current[0], intervals[i][0]),
-                            Math.max(current[1], intervals[i][1])
-                    };
+                    current[1] = Math.max(current[1], intervals[i][1]);
                 }  else {
                     resultList.add(current);
                     current = intervals[i];
