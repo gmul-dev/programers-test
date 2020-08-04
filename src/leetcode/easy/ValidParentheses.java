@@ -1,6 +1,7 @@
 package leetcode.easy;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 public class ValidParentheses {
@@ -88,6 +89,34 @@ public class ValidParentheses {
                 }
             }
             return st.isEmpty();
+        }
+    }
+
+    class SolutionBes {
+        Map<Character, Character> charMap = new HashMap<>();
+
+        public SolutionBes() {
+            charMap.put(')', '(');
+            charMap.put('}', '{');
+            charMap.put(']', '[');
+        }
+
+        public boolean isValid(String s){
+            Stack<Character> characters = new Stack<>();
+            for(char c : s.toCharArray()) {
+                if(c == '(' || c == '{' || c == '[') {
+                    characters.push(c);
+                } else {
+                    if(characters.isEmpty()) {
+                        return false;
+                    }
+
+                    if(charMap.get(c) != characters.pop()) {
+                        return false;
+                    }
+                }
+            }
+            return characters.isEmpty();
         }
     }
 }
