@@ -6,27 +6,29 @@ import java.util.PriorityQueue;
 public class KthLargestElementinanArray {
 
     public static void main(String[] args) {
-        System.out.println(Solution.findKthLargest(new int[]{3,2,3,1,2,4,5,5,6}, 4));
+        System.out.println(SolutionBest.findKthLargest(new int[]{1,1,2,2,3,3,4,4,6}, 4));
     }
 
     static class Solution {
         public static int findKthLargest(int[] nums, int k) {
-            PriorityQueue<Integer> queue = new PriorityQueue<>(k);
-            for (int n : nums) {
-                queue.add(n);
-                if (queue.size() > k) {
-                    queue.poll();
-                }
-            }
-            return queue.poll();
+//            PriorityQueue<Integer> queue = new PriorityQueue<>(k);
+//            for (int n : nums) {
+//                queue.add(n);
+//                if (queue.size() > k) {
+//                    queue.poll();
+//                }
+//            }
+//            return queue.poll();
+            Arrays.sort(nums);
+            return nums[nums.length - k];
         }
     }
 
-    class SolutionBest {
-        public int findKthLargest(int[] nums, int k) {
+    static class SolutionBest {
+        public static int findKthLargest(int[] nums, int k) {
             return dfs(nums, k, 0, nums.length - 1);
         }
-        private int dfs(int[] nums, int k, int start, int end) {
+        private static int dfs(int[] nums, int k, int start, int end) {
             if (start == end) {
                 return nums[start];
             }
