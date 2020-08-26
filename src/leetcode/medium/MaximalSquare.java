@@ -3,11 +3,12 @@ package leetcode.medium;
 public class MaximalSquare {
 
     public static void main(String[] args) {
-
+        char[][] matrix = new char[][]{{'1','0','1','0','0'},{'1','0','1','1','1'},{'1','1','1','1','1'},{'1','0','0','1','0'}};
+        System.out.println(Solution.maximalSquare(matrix));
     }
 
-    class Solution {
-        public int maximalSquare(char[][] matrix) {
+    static class Solution {
+        public static int maximalSquare(char[][] matrix) {
 //            int m = matrix.length;
 //            int n = m == 0? 0:matrix[0].length;
 //            int[] dp = new int[n+1];
