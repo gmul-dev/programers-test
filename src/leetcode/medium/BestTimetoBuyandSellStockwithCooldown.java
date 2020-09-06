@@ -42,16 +42,24 @@ public class BestTimetoBuyandSellStockwithCooldown {
 //            return sell[n];
 //
 
-            int curr_sell=0;
-            int prev_sell=0;
-            int curr_buy = Integer.MIN_VALUE;
-            for(int price : prices){
-                int temp = curr_sell;
-                curr_buy  = Math.max(curr_buy,prev_sell-price);
-                curr_sell = Math.max(curr_sell,curr_buy+price);
-                prev_sell = temp;
+            int n = prices.length;
+            if(n == 0)
+                return 0;
+
+            int buy = Integer.MIN_VALUE;
+            int sell = 0;
+            int cooldown = 0;
+            int prevSell = -1;
+
+            for(int i = 0 ; i < n ; i++)
+            {
+                prevSell = sell;
+                sell = Math.max(prices[i] + buy , sell);
+                buy = Math.max(-prices[i] + cooldown , buy);
+                cooldown = Math.max(prevSell , cooldown);
             }
-            return curr_sell;
+
+            return sell;
         }
     }
 }
