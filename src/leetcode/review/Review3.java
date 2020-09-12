@@ -1,13 +1,18 @@
 package leetcode.review;
 
 public class Review3 {
+
+    public static void main(String[] args) {
+        System.out.println(SolutionBest.maxArea(new int[]{1,8,6,2,5,4,8,3,7}));
+    }
+
     static class SolutionBest {
 
-        public int maxArea(int[] height) {
+        public static int maxArea(int[] height) {
             return helper(height, 0, height.length - 1, 0);
         }
 
-        public int helper(int[] height, int start, int end, int max) {
+        public static int helper(int[] height, int start, int end, int max) {
             int currCap = Math.min(height[start], height[end]) * (end - start);
             if(currCap > max) {
                 max = currCap;
