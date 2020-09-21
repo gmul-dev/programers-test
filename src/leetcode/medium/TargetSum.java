@@ -33,39 +33,52 @@ public class TargetSum {
         }
     }
 
-    class SolutionDP2D {
+    class SolutionDPBest {
         public int findTargetSumWays(int[] nums, int S) {
-            int[][] dp = new int[nums.length][2001];
-            dp[0][nums[0] + 1000] = 1;
-            dp[0][-nums[0] + 1000] += 1;
-            for (int i = 1; i < nums.length; i++) {
-                for (int sum = -1000; sum <= 1000; sum++) {
-                    if (dp[i - 1][sum + 1000] > 0) {
-                        dp[i][sum + nums[i] + 1000] += dp[i - 1][sum + 1000];
-                        dp[i][sum - nums[i] + 1000] += dp[i - 1][sum + 1000];
-                    }
-                }
+            int sum = 0;
+            for (int num : nums)
+                sum += num;
+            if (sum < S || -sum > -S || (S + sum) % 2 != 0)
+                return 0;
+
+            int target = (S + sum) / 2, dp[] = new int[target + 1];
+            dp[0] = 1;
+            for (int num : nums) {
+                for (int i = target; i >= num; i--)
+                    dp[i] += dp[i - num];
             }
-            return S > 1000 ? 0 : dp[nums.length - 1][S + 1000];
+            return dp[target];
         }
     }
 
-    class SolutionDP1D {
+    class SolutionDP {
         public int findTargetSumWays(int[] nums, int S) {
-            int[] dp = new int[2001];
-            dp[nums[0] + 1000] = 1;
-            dp[-nums[0] + 1000] += 1;
-            for (int i = 1; i < nums.length; i++) {
-                int[] next = new int[2001];
-                for (int sum = -1000; sum <= 1000; sum++) {
-                    if (dp[sum + 1000] > 0) {
-                        next[sum + nums[i] + 1000] += dp[sum + 1000];
-                        next[sum - nums[i] + 1000] += dp[sum + 1000];
-                    }
-                }
-                dp = next;
+            int sum = 0;
+            for (int num : nums) {
+                sum += num;
             }
-            return S > 1000 ? 0 : dp[S + 1000];
+
+            if (S > sum || sum < -S) {
+                return 0;
+            }
+
+            if ((S + sum) % 2 != 0) {
+                return 0;
+            }
+
+            int len = nums.length;
+            int target = (S + sum) / 2;
+
+            int[] dp = new int[target + 1];
+
+            dp[0] = 1;
+            for (int i = 1; i <= len; i++) {
+                for (int j = target; j >= nums[i - 1]; j--) {
+                    dp[j] = dp[j] + dp[j - nums[i - 1]];
+                }
+            }
+
+            return dp[target];
         }
     }
 }
