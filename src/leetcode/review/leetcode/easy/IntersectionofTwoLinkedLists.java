@@ -1,6 +1,4 @@
-package leetcode.review;
-
-import leetcode.easy.IntersectionOfTwoLinkedLists;
+package leetcode.review.leetcode.easy;
 
 public class IntersectionofTwoLinkedLists {
 

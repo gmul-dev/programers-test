@@ -1,6 +1,4 @@
-package leetcode.review;
-
-import leetcode.easy.DiameterOfBinaryTree;
+package leetcode.review.leetcode.easy;
 
 public class DiameterofBinaryTree {
     public static void main(String[] args) {

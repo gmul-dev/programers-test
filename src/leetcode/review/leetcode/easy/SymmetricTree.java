@@ -1,6 +1,6 @@
-package leetcode.review;
+package leetcode.review.leetcode.easy;
 
-import static leetcode.review.SymmetricTree.Solution.isSymmetric;
+import static leetcode.review.leetcode.easy.SymmetricTree.Solution.isSymmetric;
 
 public class SymmetricTree {
 
