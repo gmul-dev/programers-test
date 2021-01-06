@@ -7,7 +7,7 @@ public class PartitionEqualSubsetSum {
     }
 
     static class Solution {
-        public boolean canPartition(int[] nums) {
+        public static boolean canPartition(int[] nums) {
             if(nums == null || nums.length == 0) {
                 return false;
             }
@@ -23,7 +23,7 @@ public class PartitionEqualSubsetSum {
 
             return backtracking(nums, dp, 0, 0, target);
         }
-        private boolean backtracking(int[] nums, int[] dp, int idx, int cur, int target) {
+        private static boolean backtracking(int[] nums, int[] dp, int idx, int cur, int target) {
             if(cur == target) {
                 return true;
             }
