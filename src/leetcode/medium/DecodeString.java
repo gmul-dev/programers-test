@@ -7,7 +7,8 @@ import java.util.Stack;
 public class DecodeString {
 
     public static void main(String[] args) {
-        System.out.println(Solution.decodeString("3 [a2 [c]]"));
+        SolutionOther so = new SolutionOther();
+        System.out.println(so.decodeString("3[a2[c]]"));
     }
 
     static class Solution {
@@ -58,5 +59,37 @@ public class DecodeString {
             }
             return sb.toString();
         }
+    }
+}
+
+class SolutionOther {
+    int idx;
+
+    public String decodeString(String s) {
+        idx = 0;
+        return helper(s);
+    }
+
+    String helper(String s) {
+        StringBuilder sb = new StringBuilder();
+        int k = 0;
+        for(; idx < s.length(); idx++) {
+            char ch = s.charAt(idx);
+            if(ch == '[') {
+                idx++;
+                String str = helper(s);
+                while (k > 0) {
+                    sb.append(str);
+                    k--;
+                }
+            } else if (ch == ']') {
+                break;
+            } else if (Character.isDigit(ch)) {
+                k = k * 10 + ch - '0';
+            } else {
+                sb.append(ch);
+            }
+        }
+        return sb.toString();
     }
 }

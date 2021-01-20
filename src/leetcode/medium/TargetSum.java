@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class TargetSum {
     public static void main(String[] args) {
-        System.out.println(Solution.findTargetSumWays(new int[]{1, 1, 1, 1, 1}, 3));
+        System.out.println(SolutionDPBest.findTargetSumWays(new int[]{1, 1, 1, 1, 1}, 3));
     }
 
      static class Solution {
@@ -33,8 +33,8 @@ public class TargetSum {
         }
     }
 
-    class SolutionDPBest {
-        public int findTargetSumWays(int[] nums, int S) {
+    static class SolutionDPBest {
+        public static int findTargetSumWays(int[] nums, int S) {
             int sum = 0;
             for (int num : nums)
                 sum += num;

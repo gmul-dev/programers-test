@@ -57,12 +57,26 @@ public class LongestIncreasingSubsequence {
 
     static class SolutionDPWithBinarySearch {
         public static int lengthOfLIS(int[] nums) {
-            int[] dp = new int[nums.length];
+//            int[] dp = new int[nums.length];
+//            int len = 0;
+//            for(int num : nums) {
+//                int i = Arrays.binarySearch(dp, 0, len, num);
+//                if(i < 0) {
+//                    i = -(i + 1);
+//                }
+//                dp[i] = num;
+//                if(i == len) {
+//                    len++;
+//                }
+//            }
+//            return len;
+
+            int[] dp = new int[nums.length + 1];
             int len = 0;
             for(int num : nums) {
                 int i = Arrays.binarySearch(dp, 0, len, num);
                 if(i < 0) {
-                    i = -(i + 1);
+                    i = - (i + 1);
                 }
                 dp[i] = num;
                 if(i == len) {
