@@ -17,10 +17,15 @@ public class CraneMachine {
         int boardLength = board.length;
         Stack<Integer> basket = new Stack<>();
 
+        // 중간에 요소가 없어진 라인을 어떻게 조회 안하게 할건지.
+
         for(int k = 0; k < moveLength; k++) {
             int line = moves[k] - 1;
+            int before = basket.size();
             for(int j = 0; j < boardLength; j++) {
                 int boardNum = board[j][line];
+                if(boardNum < 0) break;
+
                 if(boardNum > 0){
                     if(!basket.isEmpty() && basket.peek() == boardNum){
                         basket.pop();
@@ -32,6 +37,8 @@ public class CraneMachine {
                     break;
                 }
             }
+            if(basket.size() == before)
+                board[0][line] = -1;
         }
         return answer;
     }
