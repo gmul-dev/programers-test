@@ -1,7 +1,5 @@
 package stack;
 
-import sun.security.krb5.internal.ccache.CredentialsCache;
-
 import java.util.*;
 
 public class IronRod {

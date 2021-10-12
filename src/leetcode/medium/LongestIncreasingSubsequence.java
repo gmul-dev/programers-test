@@ -35,23 +35,22 @@ public class LongestIncreasingSubsequence {
 
     class SolutionDP {
         public int lengthOfLIS(int[] nums) {
-            if(nums.length == 0) {
-                return 0;
-            }
             int[] dp = new int[nums.length];
-            dp[0] = 1;
-            int maxans = 1;
-            for(int i = 1; i < dp.length; i++) {
-                int maxval = 0;
-                for(int j = 0; j < i; j++) {
-                    if(nums[i] > nums[j]) {
-                        maxval = Math.max(maxval, dp[j]);
-                    }
+            Arrays.fill(dp, Integer.MAX_VALUE);
+
+            int max = 0;
+            for(int num : nums) {
+                int count = 0;
+                while (count <= max && dp[count] < num) {
+                    count++;
                 }
-                dp[i] = maxval + 1;
-                maxans = Math.max(maxans, dp[i]);
+
+                dp[count] = num;
+                if(count == max) {
+                    max++;
+                }
             }
-            return maxans;
+            return max;
         }
     }
 

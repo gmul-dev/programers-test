@@ -1,6 +1,5 @@
 package leetcode.easy;
 
-import sun.awt.image.IntegerComponentRaster;
 
 public class BestTimeBuyAndSellStock {
     public static void main(String[] args) {

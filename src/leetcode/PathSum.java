@@ -1,7 +1,6 @@
 package leetcode;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class PathSum {
     public static void main(String[] args) {
@@ -15,28 +14,38 @@ public class PathSum {
         TreeNode node8 = node4.right = new TreeNode(-2);
         TreeNode node9 = node5.left =new TreeNode(1);
 
-        System.out.println(Solution.pathSum(node1, 8));
+        PathSum s = new PathSum();
+        System.out.println(s.pathSum(node1, 8));
     }
 
+    int count = 0;
+    int k;
+    HashMap<Integer, Integer> h = new HashMap();
 
-    static class Solution {
-        public static int pathSum(TreeNode root, int sum) {
-            Map<Integer, Integer> map = new HashMap<>();
-            map.put(0, 1);
-            return helper(root, 0, map, sum);
+    public void preorder(TreeNode node, int currSum) {
+        if (node == null)
+            return;
 
-        }
+        currSum += node.val;
 
-        public static int helper(TreeNode root, int curSum, Map<Integer, Integer> map, int sum) {
-            if (root == null) return 0;
+        // 현재의 합이 target을 만족하는지 확인
+        if (currSum == k)
+            count++;
 
-            curSum += root.val;
-            int res = map.getOrDefault(curSum - sum, 0);
-            map.put(curSum, map.getOrDefault(curSum, 0) + 1);
-            res += helper(root.left, curSum, map, sum) + helper(root.right, curSum, map, sum);
-            map.put(curSum, map.getOrDefault(curSum, 0) - 1);
-            return res;
-        }
+        // 현재까지의 부분합 중 target을 만족하는게 있는지 확인
+        count += h.getOrDefault(currSum - k, 0);
+        h.put(currSum, h.getOrDefault(currSum, 0) + 1);
+
+        preorder(node.left, currSum);
+        preorder(node.right, currSum);
+
+        h.put(currSum, h.get(currSum) - 1);
+    }
+
+    public int pathSum(TreeNode root, int sum) {
+        k = sum;
+        preorder(root, 0);
+        return count;
     }
 
     public static class TreeNode {
